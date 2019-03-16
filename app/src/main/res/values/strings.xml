@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FirebaseRemoteConfig</string>
 
+    <string name="target">Millennium Falcon\'s target:</string>
+
     <string name="tatooine">Tatooine</string>
     <string name="death_star">Death Star</string>
 </resources>
