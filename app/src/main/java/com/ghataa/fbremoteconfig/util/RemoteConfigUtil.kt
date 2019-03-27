@@ -16,16 +16,18 @@ class RemoteConfigUtil {
 
         @JvmStatic
         fun init(): Completable {
-            val remoteConfig = FirebaseRemoteConfig.getInstance()
+            return Completable.create { emitter ->
+                val remoteConfig = FirebaseRemoteConfig.getInstance()
 
-            val configSettings = FirebaseRemoteConfigSettings.Builder()
-                    .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                    .build()
+                val configSettings = FirebaseRemoteConfigSettings.Builder()
+                        .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                        .build()
 
-            remoteConfig.setConfigSettings(configSettings)
-            remoteConfig.setDefaults(R.xml.remote_config_defaults)
+                remoteConfig.setConfigSettings(configSettings)
+                remoteConfig.setDefaults(R.xml.remote_config_defaults)
 
-            return fetchRemoteConfigParameters(remoteConfig)
+                emitter.onComplete()
+            }.andThen(fetchRemoteConfigParameters(FirebaseRemoteConfig.getInstance()))
         }
 
         fun fetchRemoteConfigParameters(remoteConfig: FirebaseRemoteConfig): Completable {

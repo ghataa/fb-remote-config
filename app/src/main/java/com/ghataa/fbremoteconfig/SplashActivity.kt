@@ -7,10 +7,12 @@ import com.ghataa.fbremoteconfig.util.RemoteConfigUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class SplashActivity : AppCompatActivity() {
 
-    private var compositDisposable = CompositeDisposable()
+    private var compositeDisposable = CompositeDisposable()
+    private val TIMEOUT_FOR_FETCHING_REMOTE_CONFIG_PARAMS_IN_MILLISECONDS = 5000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,18 +22,19 @@ class SplashActivity : AppCompatActivity() {
         val initRemoteConfigDisposable = RemoteConfigUtil.init()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .timeout(TIMEOUT_FOR_FETCHING_REMOTE_CONFIG_PARAMS_IN_MILLISECONDS, TimeUnit.MILLISECONDS)
                 .subscribe({
                     navigateForward()
                 }, {
                     navigateForward()
                 })
 
-        compositDisposable.add(initRemoteConfigDisposable)
+        compositeDisposable.add(initRemoteConfigDisposable)
     }
 
     override fun onPause() {
         super.onPause()
-        compositDisposable.dispose()
+        compositeDisposable.dispose()
     }
 
     fun navigateForward() {
