@@ -39,14 +39,14 @@ class RemoteConfigUtil {
                         .addOnCompleteListener { task ->
                             run {
                                 if (task.isSuccessful) {
-                                    Log.d("RemoteConfigUtil", "Fetched")
+                                    Log.d(RemoteConfigUtil::class.java.canonicalName, "Fetched")
 
                                     remoteConfig.activateFetched()
-                                    Log.d("RemoteConfigUtil", "Activated")
+                                    Log.d(RemoteConfigUtil::class.java.canonicalName, "Activated")
 
                                     emitter.onComplete()
                                 } else {
-                                    Log.d("RemoteConfigUtil", "Fetch Failed")
+                                    Log.d(RemoteConfigUtil::class.java.canonicalName, "Fetch Failed")
 
                                     emitter.onError(task.exception!!)
                                 }
