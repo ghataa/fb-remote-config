@@ -3,6 +3,8 @@
 
     <string name="target">Millennium Falcon\'s target:</string>
 
+    <string name="target_toast_text">Let\'s go to %s</string>
+
     <string name="tatooine">Tatooine</string>
     <string name="death_star">Death Star</string>
 </resources>

@@ -12,9 +12,11 @@ class MainViewModel : ViewModel() {
     val buttonText = ObservableField<FalconTarget>(FalconTarget.TATOOINE)
 
     fun onMainButtonClick(view: View) {
-        val stringResId = if (RemoteConfigUtil.targetIsTatooine()) R.string.tatooine else R.string.death_star
+        val targetStringResId = if (RemoteConfigUtil.targetIsTatooine()) R.string.tatooine else R.string.death_star
 
-        Toast.makeText(view.context, stringResId, Toast.LENGTH_SHORT).show()
+        Toast.makeText(view.context,
+                view.context.getString(R.string.target_toast_text, view.context.getString(targetStringResId)),
+                Toast.LENGTH_SHORT).show()
     }
 
     fun setButtonText(falconTarget: FalconTarget) {
