@@ -13,8 +13,6 @@ Used technologies:
 - RxJava 2
 - Firebase Remote Config
 
-Read my article for more details:
-https://link.medium.com/Iuo71avPJV
+Read my article for more details [here](https://link.medium.com/Iuo71avPJV).
 
-Loading strategy comes from Todd Kerpelman's blog post:
-https://firebase.googleblog.com/2017/01/firebase-remote-config-loading.html
+Loading strategy comes from [Todd Kerpelman's blog post](https://firebase.googleblog.com/2017/01/firebase-remote-config-loading.html).
